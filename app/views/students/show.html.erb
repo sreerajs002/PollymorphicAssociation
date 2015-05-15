@@ -1,0 +1,51 @@
+<div class='col-md-4 col-xs-11 col-xs-offset-1 col-md-offset-4'>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @student.email %>
+</p>
+<p>
+  <strong>List of Articles:</strong>
+<%if @student.comments.presence%>
+<div class='table-responsive'>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Article name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <%@student.comments.each do|comment| %>
+    <tr>
+    <td><%=comment.article_name %></td>
+  	<td><%=comment.description%></td>
+    <td>
+    <%= link_to comment , class:'btn btn-success btn-xs' do%><i class="glyphicon glyphicon-eye-open">
+                </i> <%end%>
+    <%= link_to edit_comment_path(comment), class:'btn btn-warning btn-xs' do%>
+                    <i class="glyphicon glyphicon-pencil"></i><% end %> 
+    <%= link_to  comment, method: :delete, data:{ confirm: 'Are you sure?' },class:'btn btn-danger btn-xs' do%><i class="glyphicon glyphicon-trash"></i><% end %>
+  	</td>
+    </tr>
+  <%end %>
+  </tbody>
+ </table>
+</div>
+<%else%>
+<%= "No Articles Associated with you"%>
+<%end%>
+</p>
+<%= link_to 'New Article', new_comment_path({:sid=>@student.id }) , class:'btn btn-info col-xs-4'%>
+<%= link_to 'Edit', edit_student_path(@student), class:'btn btn-info col-xs-offset-1 col-xs-3' %>
+<%= link_to 'Back', students_path, class:'btn btn-info col-xs-offset-1 col-xs-3' %>
+ </div>

@@ -1,0 +1,21 @@
+<div class='col-md-4 col-xs-11 col-xs-offset-1 col-md-offset-4'>
+
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Author Name:</strong>
+  <%= @comment.author_name %>
+</p>
+<p>
+  <strong>Author Type:</strong>
+  <%= @comment.author_type %>
+</p>
+<p>
+  <strong>Article Name:</strong>
+  <%= @comment.article_name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @comment.description %>
+</p>
+<%= link_to 'Back', :back , class:'btn btn-info btn-block' %>
+</div>
